@@ -31,3 +31,112 @@
 /// THE SOFTWARE.
 
 import XCTest
+
+class CashRegister {
+  
+    var availableFunds: Double
+    
+    var transactionTotal: Double { transactions.reduce(0 , +) }
+    
+    private var transactions: [Double] = []
+    
+    init(availableFunds: Double = 0.0) {
+        self.availableFunds = availableFunds
+    }
+    
+    func addItem(_ item: Double) {
+        transactions.append(item)
+    }
+    
+    func acceptCashPayment(_ cash: Double) {
+        availableFunds -= cash
+    }
+}
+
+// You’ll almost always subclass XCTestCase to create your test classes.
+class CashRegisterTests: XCTestCase {
+    
+    // Set up instance variable for tests to reduce code duplication
+    var availableFunds: Double!
+    var sut: CashRegister!
+    var itemCost: Double!
+    
+    // Common tasks to set up each test
+    override func setUp() {
+        super.setUp()
+        
+        availableFunds = 100.0
+        sut = CashRegister(availableFunds: 100.0)
+        itemCost = 42.0
+    }
+    
+    // Clean up after each test
+    override func tearDown() {
+        
+        availableFunds = nil
+        sut = nil
+        itemCost = nil
+        
+        super.tearDown()
+    }
+    
+    // XCTest requires all test methods begin with the keyword test to be run
+    // Next, describe what’s being tested. Here, this is init.
+    // There’s then an underscore to seprate it from the next part.
+    
+    // Write an initializer that accepts availableFunds.
+    func testInit_acceptsAvailableFunds() {
+        
+        // When
+        let sut = CashRegister(availableFunds: availableFunds)
+        
+        // Then
+        XCTAssertEqual(availableFunds, sut.availableFunds)
+    }
+    
+    // Write a method for addItem that adds to a transaction.
+    func testAddItem_oneItem() {
+        
+        // When
+        sut.addItem(itemCost)
+        
+        // Then
+        XCTAssertEqual(sut.transactionTotal, itemCost)
+        
+    }
+    
+    func testAddItem_twoItems() {
+        
+        let itemCost2 = 20.0
+        let expectedTotal = itemCost + itemCost2
+        
+        sut.addItem(itemCost)
+        sut.addItem(itemCost2)
+        
+        XCTAssertEqual(sut.transactionTotal, expectedTotal)
+        
+    }
+    
+    func testAcceptsCashPayment() {
+        
+        let expectedTotal = itemCost
+        
+        sut.addItem(itemCost)
+        sut.acceptCashPayment(itemCost)
+        
+        XCTAssertEqual(sut.transactionTotal, expectedTotal)
+    }
+    
+    func testAcceptsCashPayment_addsPaymentToAvailableFunds() {
+        
+        let expectedAvailableFunds = sut.availableFunds - itemCost
+        
+        sut.addItem(itemCost)
+        sut.acceptCashPayment(itemCost)
+        
+        XCTAssertEqual(sut.availableFunds, expectedAvailableFunds)
+    }
+}
+
+// This tells the playground to run the test methods defined within CashRegisterTests.
+CashRegisterTests.defaultTestSuite.run()
