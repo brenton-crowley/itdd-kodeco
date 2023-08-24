@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,57 +30,45 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
+import XCTest
+@testable import FitNess
 
-extension AppState {
-  var nextStateButtonLabel: String {
-    switch self {
-    case .notStarted:
-      return "Start"
-    case .inProgress:
-      return "Pause"
-    case .paused:
-      return "Resume"
-    case .caught:
-      return "Try Again"
-    case .completed:
-      return "Start Over"
-    }
-  }
-}
-
-class StepCountController: UIViewController {
-  @IBOutlet weak var stepCountLabel: UILabel!
-  @IBOutlet var startButton: UIButton!
-  @IBOutlet weak var chaseView: ChaseView!
-
-  init() {
-    // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
-    super.init(nibName: nil, bundle: nil)
-    startButton = UIButton()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
+final class AppModelTests: XCTestCase {
+  
+  // This variable sets aside storage for an AppModel to use in the tests. It’s force-unwrapped in this case because you don’t have access to the class initializer. Instead, you have to set up variables later, for example, in setUpWithError().
+  var sut: AppModel!
+  
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     
-    updateButton()
-  }
-
-  @IBAction func startStopPause(_ sender: Any?) {
-    AppModel.instance.start()
-    
-    updateButton()
-    
+    sut = AppModel()
   }
   
-  private func updateButton() {
-    let title = AppModel.instance.appState.nextStateButtonLabel
-    startButton.setTitle(title, for: .normal)
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
   }
-
+  
+  //  1. The app should start in .notStarted to let the UI render the welcome messaging.
+  func testAppModel_whenInitialised_isInNotStartedState() {
+    
+    let initialState = sut.appState
+    
+    XCTAssertEqual(initialState, AppState.notStarted)
+    
+  }
+  //  2. When the user taps Start, the app should move into .inProgress to track user activity and display updates.
+  func testAppModel_whenStarted_isInProgressState() {
+    
+    // Given
+    
+    // When
+    sut.start()
+    
+    //Then
+    let observedState = sut.appState
+    XCTAssertEqual(observedState, .inProgress)
+    
+  }
   
 }

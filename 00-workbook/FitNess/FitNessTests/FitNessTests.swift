@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,57 +30,31 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
+import XCTest
 
-extension AppState {
-  var nextStateButtonLabel: String {
-    switch self {
-    case .notStarted:
-      return "Start"
-    case .inProgress:
-      return "Pause"
-    case .paused:
-      return "Resume"
-    case .caught:
-      return "Try Again"
-    case .completed:
-      return "Start Over"
+final class FitNessTests: XCTestCase {
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-  }
-}
 
-class StepCountController: UIViewController {
-  @IBOutlet weak var stepCountLabel: UILabel!
-  @IBOutlet var startButton: UIButton!
-  @IBOutlet weak var chaseView: ChaseView!
-
-  init() {
-    // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
-    super.init(nibName: nil, bundle: nil)
-    startButton = UIButton()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    updateButton()
-  }
-
-  @IBAction func startStopPause(_ sender: Any?) {
-    AppModel.instance.start()
-    
-    updateButton()
-    
-  }
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
   
-  private func updateButton() {
-    let title = AppModel.instance.appState.nextStateButtonLabel
-    startButton.setTitle(title, for: .normal)
-  }
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Any test you write for XCTest can be annotated as throws and async.
+        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
+        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    }
 
-  
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
 }
