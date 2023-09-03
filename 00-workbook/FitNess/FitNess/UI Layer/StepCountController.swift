@@ -1,15 +1,15 @@
 /// Copyright (c) 2021 Razeware LLC
-/// 
+///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-/// 
+///
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-/// 
+///
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-/// 
+///
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -66,21 +66,79 @@ class StepCountController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    updateButton()
+
+    updateUI()
   }
 
-  @IBAction func startStopPause(_ sender: Any?) {
-    AppModel.instance.start()
-    
+  func updateUI() {
     updateButton()
-    
+    updateChaseView()
   }
-  
+
   private func updateButton() {
     let title = AppModel.instance.appState.nextStateButtonLabel
     startButton.setTitle(title, for: .normal)
   }
 
-  
+  // MARK: - UI Actions
+
+  @IBAction func startStopPause(_ sender: Any?) {
+    do {
+      try AppModel.instance.start()      
+    } catch {
+      showNeedGoalAlert()
+    }
+
+    updateUI()
+  }
+
+  @IBAction func showSettings(_ sender: Any) {
+    getGoalFromUser()
+  }
+}
+
+// MARK: - Goal
+extension StepCountController {
+  func updateGoal(newGoal: Int) {
+    // update this function
+    AppModel.instance.dataModel.goal = newGoal
+  }
+
+  private func showNeedGoalAlert() {
+    let alertController = UIAlertController(title: "Set a goal to start", message: nil, preferredStyle: .alert)
+    let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+    let enterGoal = UIAlertAction(title: "Enter Goal", style: .default) { [weak self] _ in
+      self?.getGoalFromUser()
+    }
+
+    alertController.addAction(cancel)
+    alertController.addAction(enterGoal)
+    present(alertController, animated: true)
+  }
+
+  private func getGoalFromUser() {
+    let alertController = UIAlertController(title: "What is your step goal?", message: nil, preferredStyle: .alert)
+    alertController.addTextField { textField in
+      textField.placeholder = "1000"
+      textField.keyboardType = .numberPad
+    }
+    let action = UIAlertAction(title: "Done", style: .default) { [weak self] _ in
+      guard let textField = alertController.textFields?.first else { return }
+      if let numberString = textField.text,
+      let goal = Int(numberString) {
+        self?.updateGoal(newGoal: goal)
+      } else {
+        self?.updateGoal(newGoal: 0)
+      }
+    }
+    alertController.addAction(action)
+    present(alertController, animated: true)
+  }
+}
+
+// MARK: - Chase View
+extension StepCountController {
+  private func updateChaseView() {
+    chaseView.state = AppModel.instance.appState
+  }
 }

@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,25 +32,23 @@
 
 import Foundation
 
-class AppModel {
-  static let instance = AppModel()
+class DataModel {
   
-  let dataModel = DataModel()
-  
-  var appState: AppState = .notStarted
-  
-  init() {}
-  
-  func start() throws {
+    var goal: Int?
+    var steps: Int = 0
+    var goalReached: Bool {
 
-    guard dataModel.goal != nil else { throw AppError.goalNotSet }
-
-    appState = .inProgress
-  }
-  
-  func restart() {
-    appState = .notStarted
-    dataModel.goal = nil
+    if let goal = goal,
+        steps >= goal,
+      !caught {
+        return true
+    }
+    return false
   }
 
+  let nessie = Nessie()
+  var distance: Double = 0
+  
+  var caught: Bool { distance > 0 && nessie.distance >= distance }
+  
 }

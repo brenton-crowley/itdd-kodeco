@@ -17,9 +17,15 @@
 		4CBCDEB72701426800E8992C /* StepCountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEB62701426800E8992C /* StepCountController.swift */; };
 		4CBCDEBC270142DF00E8992C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEBB270142DF00E8992C /* AppState.swift */; };
 		4CBCDEBE270142EE00E8992C /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEBD270142EE00E8992C /* AppModel.swift */; };
+		CF30647F2A9D4D7F00EDCFA5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF30647E2A9D4D7F00EDCFA5 /* AppError.swift */; };
+		CFA9D0F92A9C080E00D3D00B /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9D0F82A9C080E00D3D00B /* DataModelTests.swift */; };
+		CFA9D0FE2A9C0A1600D3D00B /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9D0FD2A9C0A1600D3D00B /* DataModel.swift */; };
+		CFA9D1002A9C0A2900D3D00B /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9D0FF2A9C0A2900D3D00B /* Nessie.swift */; };
 		CFC995522A97132D0092C1BF /* FitNessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC995512A97132D0092C1BF /* FitNessTests.swift */; };
 		CFC995592A9714130092C1BF /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC995582A9714130092C1BF /* AppModelTests.swift */; };
 		CFC9955B2A971FF20092C1BF /* StepCountControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC9955A2A971FF20092C1BF /* StepCountControllerTests.swift */; };
+		CFE81CE72AA1BB5B0024EA8C /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE81CE62AA1BB5B0024EA8C /* ViewControllers.swift */; };
+		CFE81CEA2AA1BBD70024EA8C /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE81CE92AA1BBD70024EA8C /* RootViewController+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +51,17 @@
 		4CBCDEB62701426800E8992C /* StepCountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountController.swift; sourceTree = "<group>"; };
 		4CBCDEBB270142DF00E8992C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		4CBCDEBD270142EE00E8992C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		CF30647E2A9D4D7F00EDCFA5 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppError.swift; path = "../../../../04-test-expressions/projects/starter/FitNess/FitNess/App Model/AppError.swift"; sourceTree = "<group>"; };
+		CFA9D0F82A9C080E00D3D00B /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		CFA9D0FD2A9C0A1600D3D00B /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		CFA9D0FF2A9C0A2900D3D00B /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
 		CFC9954F2A97132D0092C1BF /* FitNessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFC995512A97132D0092C1BF /* FitNessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitNessTests.swift; sourceTree = "<group>"; };
 		CFC995582A9714130092C1BF /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		CFC9955A2A971FF20092C1BF /* StepCountControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountControllerTests.swift; sourceTree = "<group>"; };
+		CFE81CE62AA1BB5B0024EA8C /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		CFE81CE92AA1BBD70024EA8C /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
+		CFE81CEB2AA1C29A0024EA8C /* FitNess.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = FitNess.xctestplan; path = Plans/FitNess.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +85,7 @@
 		185CB1EF23C78CE6009F7571 = {
 			isa = PBXGroup;
 			children = (
+				CFE81CEB2AA1C29A0024EA8C /* FitNess.xctestplan */,
 				185CB1FA23C78CE6009F7571 /* FitNess */,
 				CFC995502A97132D0092C1BF /* FitNessTests */,
 				185CB1F923C78CE6009F7571 /* Products */,
@@ -92,6 +106,7 @@
 		185CB1FA23C78CE6009F7571 /* FitNess */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9D0FC2A9C0A0A00D3D00B /* Data Model */,
 				4CBCDEB82701427500E8992C /* App Layer */,
 				4CBCDEBF270142F400E8992C /* App Model */,
 				4CBCDEB92701428100E8992C /* UI Layer */,
@@ -133,15 +148,35 @@
 		4CBCDEBF270142F400E8992C /* App Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF30647E2A9D4D7F00EDCFA5 /* AppError.swift */,
 				4CBCDEBB270142DF00E8992C /* AppState.swift */,
 				4CBCDEBD270142EE00E8992C /* AppModel.swift */,
 			);
 			path = "App Model";
 			sourceTree = "<group>";
 		};
+		CFA9D0F72A9C07F400D3D00B /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFA9D0F82A9C080E00D3D00B /* DataModelTests.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		CFA9D0FC2A9C0A0A00D3D00B /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFA9D0FD2A9C0A1600D3D00B /* DataModel.swift */,
+				CFA9D0FF2A9C0A2900D3D00B /* Nessie.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
 		CFC995502A97132D0092C1BF /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
+				CFE81CE82AA1BB8E0024EA8C /* Test Extensions */,
+				CFE81CE52AA1BB490024EA8C /* Test Classes */,
 				CFC995512A97132D0092C1BF /* FitNessTests.swift */,
 				CFC9955C2A9720930092C1BF /* Cases */,
 				CFC9955F2A9722240092C1BF /* Helper Extensions */,
@@ -154,6 +189,7 @@
 		CFC9955C2A9720930092C1BF /* Cases */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9D0F72A9C07F400D3D00B /* Data Model */,
 				CFC995602A97224A0092C1BF /* AppModel */,
 				CFC995612A9722520092C1BF /* UI Layer */,
 			);
@@ -195,6 +231,22 @@
 				CFC9955A2A971FF20092C1BF /* StepCountControllerTests.swift */,
 			);
 			path = "UI Layer";
+			sourceTree = "<group>";
+		};
+		CFE81CE52AA1BB490024EA8C /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CFE81CE62AA1BB5B0024EA8C /* ViewControllers.swift */,
+			);
+			path = "Test Classes";
+			sourceTree = "<group>";
+		};
+		CFE81CE82AA1BB8E0024EA8C /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CFE81CE92AA1BBD70024EA8C /* RootViewController+Tests.swift */,
+			);
+			path = "Test Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,11 +374,14 @@
 			files = (
 				4CBCDEBE270142EE00E8992C /* AppModel.swift in Sources */,
 				185CB1FC23C78CE6009F7571 /* AppDelegate.swift in Sources */,
+				CF30647F2A9D4D7F00EDCFA5 /* AppError.swift in Sources */,
 				4CBCDEB52701425C00E8992C /* ChaseView.swift in Sources */,
+				CFA9D0FE2A9C0A1600D3D00B /* DataModel.swift in Sources */,
 				4CBCDEB72701426800E8992C /* StepCountController.swift in Sources */,
 				4CBCDEBC270142DF00E8992C /* AppState.swift in Sources */,
 				185CB1FE23C78CE6009F7571 /* SceneDelegate.swift in Sources */,
 				4CBCDEB32701423C00E8992C /* RootViewController.swift in Sources */,
+				CFA9D1002A9C0A2900D3D00B /* Nessie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +390,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFC995522A97132D0092C1BF /* FitNessTests.swift in Sources */,
+				CFA9D0F92A9C080E00D3D00B /* DataModelTests.swift in Sources */,
+				CFE81CEA2AA1BBD70024EA8C /* RootViewController+Tests.swift in Sources */,
+				CFE81CE72AA1BB5B0024EA8C /* ViewControllers.swift in Sources */,
 				CFC9955B2A971FF20092C1BF /* StepCountControllerTests.swift in Sources */,
 				CFC995592A9714130092C1BF /* AppModelTests.swift in Sources */,
 			);
@@ -483,12 +541,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FitNess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.FitNess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surfingscratcher.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -500,12 +559,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FitNess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.FitNess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surfingscratcher.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

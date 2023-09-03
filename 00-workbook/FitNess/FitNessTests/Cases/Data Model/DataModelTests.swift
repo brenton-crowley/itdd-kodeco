@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,83 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import XCTest
+@testable import FitNess
 
-// Add the Data Model class here:
+final class DataModelTests: XCTestCase {
+
+  var sut: DataModel!
+  
+    override func setUpWithError() throws {
+      try super.setUpWithError()
+      
+      sut = DataModel()
+    }
+
+    override func tearDownWithError() throws {
+      sut = nil
+      try super.tearDownWithError()
+    }
+  
+  func testModel_whenStarted_goalIsNotReached() {
+    
+    // Given
+    
+    // When
+    
+    // Then
+    XCTAssertFalse(sut.goalReached, "goalReached should be false when them model is created")
+  }
+
+  func testModel_whenStepsReachGoal_goalIsReached() {
+    
+    // Given
+    sut.goal = 1000
+    
+    // When
+    sut.steps = 1000
+    
+    // Then
+    XCTAssertTrue(sut.goalReached)
+  }
+  
+  // MARK: - Nessie
+  func testModel_whenStarted_userIsNotCaught() {
+    XCTAssertFalse(sut.caught)
+  }
+  
+  func testModel_whenNessieAheadOfUser_isCaught() {
+    
+    // Given
+    sut.nessie.distance = 1000
+    sut.distance = 100
+    
+    // Then
+    XCTAssertTrue(sut.caught)
+  }
+  
+  func testModel_whenUserAheadOfNessie_isNotCaught() {
+    
+    // Given
+    sut.nessie.distance = 100
+    sut.distance = 1000
+    
+    // Then
+    XCTAssertFalse(sut.caught)
+  }
+  
+  // MARK: - Goal
+  func testGoal_whenUserCaught_cannotBeReached() {
+    
+    // Given
+    sut.goal = 1000
+    sut.steps = 1000
+    
+    // When
+    sut.distance = 100
+    sut.nessie.distance = 100
+    
+    // Then
+    XCTAssertFalse(sut.goalReached)
+  }
+}

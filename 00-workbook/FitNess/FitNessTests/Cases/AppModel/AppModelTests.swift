@@ -49,6 +49,17 @@ final class AppModelTests: XCTestCase {
     try super.tearDownWithError()
   }
   
+  // MARK: - Given
+  func givenGoalSet() {
+    sut.dataModel.goal = 1000
+  }
+  
+  func givenInProgress() {
+    givenGoalSet()
+    try! sut.start()
+  }
+
+  
   //  1. The app should start in .notStarted to let the UI render the welcome messaging.
   func testAppModel_whenInitialised_isInNotStartedState() {
     
@@ -57,18 +68,60 @@ final class AppModelTests: XCTestCase {
     XCTAssertEqual(initialState, AppState.notStarted)
     
   }
+  
+  func testAppModel_whenStarted_throwsError() {
+    
+    XCTAssertThrowsError(try sut.start())
+  }
+  
+  func testState_withGoalSet_doesNotThrow() {
+    
+    // Given
+    givenGoalSet()
+    
+    // When
+    
+    // Then
+    XCTAssertNoThrow(try sut.start())
+  }
+  
   //  2. When the user taps Start, the app should move into .inProgress to track user activity and display updates.
   func testAppModel_whenStarted_isInProgressState() {
     
     // Given
+    givenGoalSet()
     
     // When
-    sut.start()
+    try? sut.start()
     
     //Then
     let observedState = sut.appState
     XCTAssertEqual(observedState, .inProgress)
     
+  }
+  
+  // MARK: - Restart
+  func testAppModel_whenReset_isInNotStartedState() {
+    // given
+    givenInProgress()
+
+    // when
+    sut.restart()
+
+    // then
+    XCTAssertEqual(sut.appState, .notStarted)
+  }
+
+  func testAppModel_whenReset_goalIsNil() {
+    
+    // Given
+    givenInProgress()
+    
+    // When
+    sut.restart()
+    
+    // Then
+    XCTAssertTrue(sut.dataModel.goal == nil)
   }
   
 }
